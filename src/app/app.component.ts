@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   template: `
     <h1>{{title}}</h1>
     <div>
-      <label>Bild1: <img src="{{image1.path}}"></label>
     </div>
     `
 })
