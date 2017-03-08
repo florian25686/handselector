@@ -1,12 +1,5 @@
 import { Component } from '@angular/core';
 
-export class HandImage {
-        id: number;
-        name: string;
-        side: string;
-        path: string;
-}
-
 @Component({
   selector: 'app-root',
   template: `
@@ -19,11 +12,5 @@ export class HandImage {
 
 export class AppComponent {
 	title = 'Spiegeln';
-	image1: HandImage = {
-        	id: 1,
-       		name: 'Bild2',
-       	 	side: 'right',
-        	path: 'src/img/bofh.png'
-        };
 }
 
