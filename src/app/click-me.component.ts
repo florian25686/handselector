@@ -47,7 +47,7 @@ const EXISTINGIMAGES: HandImage[] = [
       <br/>
       <div id="hinweis">
 		    Das Feld "Tastatureingabe" anklicken um mittels Tasten zu Arbeiten. A = links, D = rechts<br/>
-        {{ numberleft }}
+        {{ clickMessage }}
       </div>
   `
 })
@@ -55,15 +55,16 @@ const EXISTINGIMAGES: HandImage[] = [
 export class ClickMeComponent {
 
   clickMessage = '';
-
+ // Initialize should be done somewhere else
   existingImages = EXISTINGIMAGES;
   displayImages = this.existingImages;
+  typeImages = typeof this.displayImages;
 
   onClickMe( side: string ) {
     if(side) {
-      this.clickMessage  = 'You clicked '+side;
-      if(this.displayImages) {
 
+      if(this.displayImages && this.typeImages == 'object') {
+        this.clickMessage  = 'You clicked '+this.typeImages;
         if(this.displayImages.length >= 1) {
            this.displayImages.pop();
         }
@@ -78,6 +79,8 @@ export class ClickMeComponent {
         delete this.existingImages[x];
         // this.numberleft = this.existingImages.length;
         // this.displayImages.shift(this.existingImages[0]);
+      } else {
+        this.displayImages = this.existingImages;
       }
     }
   }
