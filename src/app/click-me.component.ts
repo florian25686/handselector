@@ -1,12 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-export class HandImage {
-  constructor(
-        public id: number,
-        public name: string,
-        public side: string,
-        public path: string) {}
-}
+import { HandImage } from './handimages';
+
+const IMAGEPATH = 'src/img/small/';
+
+const EXISTINGIMAGES: HandImage[] = [
+  { id: 1, name: 'Bild1', side: 'left', path: IMAGEPATH+'img7.png'},
+  { id: 2, name: 'Bild2', side: 'right', path: IMAGEPATH+'img2.png'},
+  { id: 3, name: 'Bild3', side: 'right', path: IMAGEPATH+'img3.png'},
+  { id: 4, name: 'Bild4', side: 'left', path:  IMAGEPATH+'img8.png'},
+  { id: 5, name: 'Bild5', side: 'right', path: IMAGEPATH+'img15.png'},
+  { id: 6, name: 'Bild6', side: 'left', path: IMAGEPATH+'img17.png'},
+  { id: 7, name: 'Bild7', side: 'right', path: IMAGEPATH+'img4.png'},
+  { id: 8, name: 'Bild8', side: 'right', path: IMAGEPATH+'img6.png'},
+  { id: 9, name: 'Bild9', side: 'right', path: IMAGEPATH+'img16.png'},
+  { id: 10, name: 'Bild10', side: 'left', path: IMAGEPATH+'img19.png'},
+  { id: 11, name: 'Bild11', side: 'left', path: IMAGEPATH+'img18.png'},
+  { id: 12, name: 'Bild12', side: 'left', path: IMAGEPATH+'img20.png'},
+  { id: 13, name: 'Bild13', side: 'left', path: IMAGEPATH+'img13.png'},
+  { id: 14, name: 'Bild14', side: 'left', path: IMAGEPATH+'img14.png'},
+  { id: 15, name: 'Bild15', side: 'right', path: IMAGEPATH+'img5.png'},
+  { id: 16, name: 'Bild16', side: 'right', path: IMAGEPATH+'img9.png'},
+  { id: 17, name: 'Bild17', side: 'right', path: IMAGEPATH+'img10.png'},
+  { id: 18, name: 'Bild18', side: 'right', path: IMAGEPATH+'img11.png'},
+  { id: 19, name: 'Bild19', side: 'right', path: IMAGEPATH+'img12.png'},
+  { id: 20, name: 'Bild20', side: 'left', path: IMAGEPATH+'img21.png'}
+];
 
 @Component({
   selector: 'click-me',
@@ -19,6 +38,16 @@ export class HandImage {
       	</ul>
         <button (click)="onClickMe('links')" style="margin-left:45px;">Links</button>
         <button (click)="onClickMe('rechts')">Rechts</button>
+        <input #box
+			(keyup.a)="onClickMe('links'); box.value = null"
+			(keyup.d)="onClickMe('rechts'); box.value = null"
+			value="Tastatureingabe"
+			>
+      </div>
+      <br/>
+      <div id="hinweis">
+		    Das Feld "Tastatureingabe" anklicken um mittels Tasten zu Arbeiten. A = links, D = rechts<br/>
+        {{ numberleft }}
       </div>
   `
 })
@@ -26,35 +55,13 @@ export class HandImage {
 export class ClickMeComponent {
 
   clickMessage = '';
-  imagePath = 'src/img/';
-  existingImages = [
-    new HandImage(1,'Bild1', 'left',  this.imagePath+'img7.png'),
-  	new HandImage(2,'Bild2', 'right', this.imagePath+'img2.png'),
-  	new HandImage(3,'Bild3', 'right', this.imagePath+'img3.png'),
-    new HandImage(4,'Bild4', 'left',  this.imagePath+'img8.png'),
-    new HandImage(5,'Bild5', 'right', this.imagePath+'img15.png'),
-    new HandImage(6,'Bild6', 'left',  this.imagePath+'img17.png'),
-    new HandImage(7,'Bild7', 'right', this.imagePath+'img4.png'),
-    new HandImage(8,'Bild8', 'right', this.imagePath+'img6.png'),
-    new HandImage(9,'Bild9', 'right', this.imagePath+'img16.png'),
-    new HandImage(10,'Bild10', 'left', this.imagePath+'img19.png'),
-    new HandImage(11,'Bild11', 'left', this.imagePath+'img18.png'),
-    new HandImage(12,'Bild12', 'left', this.imagePath+'img20.png'),
-    new HandImage(13,'Bild13', 'left', this.imagePath+'img13.png'),
-    new HandImage(14,'Bild14', 'left', this.imagePath+'img14.png'),
-    new HandImage(15,'Bild15', 'right', this.imagePath+'img5.png'),
-    new HandImage(16,'Bild16', 'right', this.imagePath+'img9.png'),
-    new HandImage(17,'Bild17', 'right', this.imagePath+'img10.png'),
-    new HandImage(18,'Bild18', 'right', this.imagePath+'img11.png'),
-    new HandImage(19,'Bild19', 'right', this.imagePath+'img12.png'),
-    new HandImage(20,'Bild20', 'left', this.imagePath+'img21.png'),
-	];
 
-  displayImages = [this.existingImages[0]];
+  existingImages = EXISTINGIMAGES;
+  displayImages = this.existingImages;
+
   onClickMe( side: string ) {
     if(side) {
       this.clickMessage  = 'You clicked '+side;
-      console.log('displayImages'+this.displayImages.length);
       if(this.displayImages) {
 
         if(this.displayImages.length >= 1) {
@@ -66,8 +73,10 @@ export class ClickMeComponent {
         if(x >= lengthArray) {
           var x = lengthArray-1;
         }
-        this.displayImages.push(this.existingImages[x]);
 
+        this.displayImages.push(this.existingImages[x]);
+        delete this.existingImages[x];
+        // this.numberleft = this.existingImages.length;
         // this.displayImages.shift(this.existingImages[0]);
       }
     }
