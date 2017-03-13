@@ -23,7 +23,6 @@ import { EXISTINGIMAGES } from './images/mock-handimages';
       <br/>
       <div id="hinweis">
 		    Das Feld "Tastatureingabe" anklicken um mittels Tasten zu Arbeiten. A = links, D = rechts<br/>
-        Anzahl ende der Zahlen{{ numberleft }}
       </div>
   `
 })
@@ -31,17 +30,17 @@ import { EXISTINGIMAGES } from './images/mock-handimages';
 export class ClickMeComponent {
 
   clickMessage = '';
-
   numberleft = 0;
 
   existingImages = EXISTINGIMAGES;
   displayImages = this.existingImages;
+  typeImages = typeof this.displayImages;
 
   onClickMe( side: string ) {
     if(side) {
-      this.clickMessage  = 'You clicked '+side;
-      if(this.displayImages) {
 
+      if(this.displayImages && this.typeImages == 'object') {
+        this.clickMessage  = 'You clicked '+this.typeImages;
         if(this.displayImages.length >= 1) {
            this.displayImages.pop();
         }
@@ -58,6 +57,8 @@ export class ClickMeComponent {
         this.existingImages.splice(1, 1);
         this.numberleft = this.existingImages.length;
         // this.displayImages.shift(this.existingImages[0]);
+      } else {
+        this.displayImages = this.existingImages;
       }
     }
   }
