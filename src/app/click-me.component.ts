@@ -6,62 +6,58 @@ import { EXISTINGIMAGES } from './images/mock-handimages';
 @Component({
   selector: 'click-me',
   template: `
-    <div id="images">
+    <div id="images" *ngIf="results == 0">
         <ul  style="list-style:none;">
       		<li *ngFor="let bild of displayImages">
       		  <img src="{{bild?.path}}">
       		</li>
       	</ul>
-        <button (click)="onClickMe('links')" style="margin-left:45px;">Links</button>
-        <button (click)="onClickMe('rechts')">Rechts</button>
+        <button (click)="onClickMe('left')" style="margin-left:45px;">Links</button>
+        <button (click)="onClickMe('right')">Rechts</button>
         <input #box
-			(keyup.a)="onClickMe('links'); box.value = null"
-			(keyup.d)="onClickMe('rechts'); box.value = null"
-			value="Tastatureingabe"
-			>
-      </div>
+			(keyup.a)="onClickMe('left'); box.value = null"
+			(keyup.d)="onClickMe('right'); box.value = null"
+			value="Tastatureingabe">
+
       <br/>
-      <div id="hinweis">
 		    Das Feld "Tastatureingabe" anklicken um mittels Tasten zu Arbeiten. A = links, D = rechts<br/>
-      </div>
+    </div>
+    <div id="result" *ngIf="results != 0">
+      <h2>Ergebnis</h2>
+      Sie haben {{ results }} % richtig.<br/>
+      <button onClick="location.reload()">Neu Starten</button>
+    </div>
   `
 })
 
 export class ClickMeComponent {
 
-  clickMessage = '';
-  numberleft = 0;
-
+  Message = '';
+  results = 0;
   existingImages = EXISTINGIMAGES;
-  displayImages = this.existingImages;
-  typeImages = typeof this.displayImages;
+  displayImages = [];
+  numberClicked = 0;
+  numberImagesToView = 4;
+  numberCorrectImages = 0;
 
-  onClickMe( side: string ) {
-    if(side) {
-
-      if(this.displayImages && this.typeImages == 'object') {
-        this.clickMessage  = 'You clicked '+this.typeImages;
-        if(this.displayImages.length >= 1) {
-           this.displayImages.pop();
-        }
-        var lengthArray = this.existingImages.length;
-
-        var x = this.numberleft;
-        /* var x = Math.floor((Math.random() * lengthArray) + 1);
-        if(x >= lengthArray) {
-          var x = lengthArray-1;
-        }
-        */
-
-        this.displayImages.push(this.existingImages[x]);
-        this.existingImages.splice(1, 1);
-        this.numberleft = this.existingImages.length;
-        // this.displayImages.shift(this.existingImages[0]);
-      } else {
-        this.displayImages = this.existingImages;
-      }
-    }
+  constructor() {
+    this.displayImages.push(this.existingImages.pop());
   }
-}
+  onClickMe( side: string ) {
+      // Still Images left to show ?
+      if(this.existingImages.length >= 1 && this.numberClicked <= this.numberImagesToView) {
+        if( this.displayImages[0].side == side ) {
+          this.numberCorrectImages +=1;
+        }
+        this.numberClicked += 1;
+        this.displayImages.pop();
+        this.displayImages.push(this.existingImages.pop());
+      } else {
+        var qouteCorrectClicked = (this.numberCorrectImages/this.numberClicked)*100;
 
-export class HandImagesComponent{}
+        this.results = Math.round(qouteCorrectClicked);
+        this.displayImages.pop();
+      }
+  }
+
+}
