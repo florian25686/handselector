@@ -26,6 +26,8 @@ import { EXISTINGIMAGES } from './images/mock-handimages';
       <h2>Ergebnis</h2>
        Links: {{ resultsLeft }} % richtig.<br/>
        Rechts: {{ resultsRight }} % richtig.<br/>
+       Gesamtzeit: {{ timeUsed }} Sekunden<br/>
+       <br/>
       <button onClick="location.reload()">Neu Starten</button>
 
     </div>
@@ -45,15 +47,20 @@ export class ClickMeComponent {
   numberCorrectImagesRight = 0;
   numberImagesLeft = 0;
   numberImagesRight = 0;
-
+  startTimeTotal = 0;
+  endTimeTotal = 0;
+  timeUsed = 0;
 
   constructor() {
     this.existingImages.sort(function(a,b){
-      return b.id - b.id;
+      return b.id - a.id;
     });
     this.displayImages.push(this.existingImages.pop());
   }
   onClickMe( side: string ) {
+    if(this.numberClicked == 0) {
+      this.startTimeTotal = new Date().getTime();
+    }
       // Still Images left to show ?
       if(this.existingImages.length >= 1 && this.numberClicked <= this.numberImagesToView) {
 
@@ -76,6 +83,10 @@ export class ClickMeComponent {
         this.displayImages.push(this.existingImages.pop());
       } else {
 
+        this.endTimeTotal = new Date().getTime();
+
+        var timeDiff = this.endTimeTotal - this.startTimeTotal ;
+        this.timeUsed = timeDiff  / 1000;
         var qouteCorrectClickedRight = (this.numberCorrectImagesRight / this.numberImagesRight)*100;
         var quoteCorrectClickedLeft =  (this.numberCorrectImagesLeft / this.numberImagesLeft)*100;
 
