@@ -1,6 +1,6 @@
 import { HandImage } from './handImages';
 
-const IMAGEPATH = 'src/img/';
+const IMAGEPATH = 'src/img/small/';
 
 export var EXISTINGIMAGES: HandImage[] = [
   { id: 1, name: 'Bild1', side: 'left', path: IMAGEPATH+'img7.png'},
@@ -27,5 +27,29 @@ export var EXISTINGIMAGES: HandImage[] = [
   { id: 22, name: 'Bild22', side: 'right', path: IMAGEPATH+'img23.png'},
   { id: 23, name: 'Bild23', side: 'right', path: IMAGEPATH+'img24.png'},
   { id: 24, name: 'Bild24', side: 'left', path: IMAGEPATH+'img26.png'},
-  { id: 25, name: 'Bild25', side: 'right', path: IMAGEPATH+'img25.png'}
+  { id: 25, name: 'Bild25', side: 'right', path: IMAGEPATH+'img25.png'},
+  { id: 26, name: 'Bild26', side: 'right', path: IMAGEPATH+'img27.png'},
+  { id: 27, name: 'Bild27', side: 'right', path: IMAGEPATH+'img28.png'},
+  { id: 28, name: 'Bild28', side: 'left', path: IMAGEPATH+'img29.png'},
+  { id: 29, name: 'Bild29', side: 'left', path: IMAGEPATH+'img30.png'},
+  { id: 30, name: 'Bild30', side: 'right', path: IMAGEPATH+'img31.png'},
+  { id: 31, name: 'Bild31', side: 'left', path: IMAGEPATH+'img32.png'},
+  { id: 32, name: 'Bild32', side: 'right', path: IMAGEPATH+'img33.png'},
+  { id: 33, name: 'Bild33', side: 'left', path: IMAGEPATH+'img34.png'},
+  { id: 34, name: 'Bild34', side: 'left', path: IMAGEPATH+'img35.png'},
+  { id: 35, name: 'Bild35', side: 'left', path: IMAGEPATH+'img36.png'},
+  { id: 36, name: 'Bild36', side: 'right', path: IMAGEPATH+'img37.png'},
+  { id: 37, name: 'Bild37', side: 'right', path: IMAGEPATH+'img38.png'},
+  { id: 38, name: 'Bild39', side: 'left', path: IMAGEPATH+'img39.png'},
+  { id: 39, name: 'Bild40', side: 'left', path: IMAGEPATH+'img40.png'},
+  { id: 40, name: 'Bild41', side: 'left', path: IMAGEPATH+'img41.png'},
+  { id: 41, name: 'Bild42', side: 'right', path: IMAGEPATH+'img42.png'},
+  { id: 42, name: 'Bild43', side: 'left', path: IMAGEPATH+'img43.png'},
+  { id: 43, name: 'Bild44', side: 'right', path: IMAGEPATH+'img44.png'},
+  { id: 44, name: 'Bild45', side: 'left', path: IMAGEPATH+'img45.png'},
+  { id: 45, name: 'Bild46', side: 'right', path: IMAGEPATH+'img46.png'},
+  { id: 46, name: 'Bild47', side: 'left', path: IMAGEPATH+'img47.png'},
+  { id: 47, name: 'Bild48', side: 'right', path: IMAGEPATH+'img48.png'},
+  { id: 48, name: 'Bild49', side: 'left', path: IMAGEPATH+'img49.png'},
+  { id: 49, name: 'Bild50', side: 'left', path: IMAGEPATH+'img50.png'}
 ];

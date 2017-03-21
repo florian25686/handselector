@@ -9,7 +9,7 @@ import { EXISTINGIMAGES } from './images/mock-handimages';
     <div id="images" *ngIf="resultsLeft == 0">
         <ul  style="list-style:none;">
       		<li *ngFor="let bild of displayImages">
-      		  <img src="{{bild?.path}}" max-width="300px" max-height="500">
+      		  <img src="{{bild?.path}}" width="500px">
       		</li>
       	</ul>
         <button (click)="onClickMe('left')" style="margin-left:45px;">Links</button>
@@ -27,6 +27,7 @@ import { EXISTINGIMAGES } from './images/mock-handimages';
        Links: {{ resultsLeft }} % richtig.<br/>
        Rechts: {{ resultsRight }} % richtig.<br/>
       <button onClick="location.reload()">Neu Starten</button>
+
     </div>
   `
 })
@@ -39,13 +40,17 @@ export class ClickMeComponent {
   existingImages = EXISTINGIMAGES;
   displayImages = [];
   numberClicked = 0;
-  numberImagesToView = 24;
+  numberImagesToView = 25;
   numberCorrectImagesLeft = 0;
   numberCorrectImagesRight = 0;
   numberImagesLeft = 0;
   numberImagesRight = 0;
 
+
   constructor() {
+    this.existingImages.sort(function(a,b){
+      return b.id - b.id;
+    });
     this.displayImages.push(this.existingImages.pop());
   }
   onClickMe( side: string ) {
