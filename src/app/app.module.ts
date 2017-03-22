@@ -5,13 +5,15 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HandselectorComponent } from './handselector/handselector.component';
-import { ClickMeComponent } from './click-me.component';
+import { HandImagesComponent } from './hand-images.component';
+import { FeetImagesComponent } from './feet-images.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HandselectorComponent,
-    ClickMeComponent
+    HandImagesComponent,
+    FeetImagesComponent
   ],
   imports: [
     BrowserModule,

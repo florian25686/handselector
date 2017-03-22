@@ -4,7 +4,7 @@ import { EXISTINGIMAGES } from './images/mock-handimages';
 
 
 @Component({
-  selector: 'click-me',
+  selector: 'hand-images',
   template: `
     <div id="images" *ngIf="resultsLeft == 0">
         <ul  style="list-style:none;">
@@ -34,7 +34,7 @@ import { EXISTINGIMAGES } from './images/mock-handimages';
   `
 })
 
-export class ClickMeComponent {
+export class HandImagesComponent {
 
   Message = '';
   resultsLeft = 0;

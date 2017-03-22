@@ -5,19 +5,31 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <h1>{{title}}</h1>
-    <div id="ImageSelector" *ngIf="ImageSelector == 1">
-      <select id="imageTypeSelector" name="imageTypes">
+    <div id="ImageSelector" ng-controller="ImageOptions" *ngIf="selectedOption == ''">
+      <select name="imageTypes" (change)="onImageOptionsChange($event)">
+        <option value="">--Bitte Bilderset auswählen--</option>
         <option value="hand">Hand Bilder</option>
         <option value="feet">Fuss Bilder</option>
       </select>
+      <br/>
     </div>
-    <div id="images" *ngIf="ImageSelector == 0">
-		  <click-me></click-me>
+    <div id="images" *ngIf="selectedOption == 'hand'">
+		  <hand-images></hand-images>
     </div>
+    <div id="feetImages" *ngIf="selectedOption == 'feet'">
+      <feet-images></feet-images>
+    </div>
+
     `
 })
 
 export class AppComponent {
   title = 'Spiegeltherapie';
   ImageSelector = 1;
+  imageTypeSelect = 'default';
+  selectedOption = '';
+
+  onImageOptionsChange(event) {
+    this.selectedOption = event.target.value;
+  }
 }
