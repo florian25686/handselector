@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   template: `
     <h1>{{title}}</h1>
     <div id="ImageSelector" ng-controller="ImageOptions" *ngIf="selectedOption == ''">
-      <select name="imageTypes" (change)="onImageOptionsChange($event)">
+      <select #imageTypes name="imageTypes" (change)="onImageOptionsChange(imageTypes.value)">
         <option value="">--Bitte Bilderset auswählen--</option>
         <option value="hand">Hand Bilder</option>
         <option value="feet">Fuss Bilder</option>
@@ -17,7 +17,10 @@ import { Component } from '@angular/core';
 		  <hand-images></hand-images>
     </div>
     <div id="feetImages" *ngIf="selectedOption == 'feet'">
-      <feet-images></feet-images>
+      <limiter-images>
+        <feet-images></feet-images>
+      </limiter-images>
+
     </div>
 
     `
@@ -29,7 +32,7 @@ export class AppComponent {
   imageTypeSelect = 'default';
   selectedOption = '';
 
-  onImageOptionsChange(event) {
-    this.selectedOption = event.target.value;
+  onImageOptionsChange(imageTypes) {
+    this.selectedOption = imageTypes;
   }
 }
