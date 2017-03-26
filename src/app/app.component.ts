@@ -13,14 +13,8 @@ import { Component } from '@angular/core';
       </select>
       <br/>
     </div>
-    <div id="images" *ngIf="selectedOption == 'hand'">
-		  <hand-images></hand-images>
-    </div>
-    <div id="feetImages" *ngIf="selectedOption == 'feet'">
-      <limiter-images>
-        <feet-images></feet-images>
-      </limiter-images>
-
+    <div id="feetImages" *ngIf="selectedOption != ''">
+      <limiter-images [imageTypes]="selectedOption"></limiter-images>
     </div>
 
     `
@@ -31,6 +25,7 @@ export class AppComponent {
   ImageSelector = 1;
   imageTypeSelect = 'default';
   selectedOption = '';
+  numberImages: number = 10;
 
   onImageOptionsChange(imageTypes) {
     this.selectedOption = imageTypes;

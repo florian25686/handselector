@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { HandselectorComponent } from './handselector/handselector.component';
 import { HandImagesComponent } from './hand-images.component';
 import { FeetImagesComponent } from './feet-images.component';
+import { LimiterImagesComponent } from './limiter-images.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HandselectorComponent,
     HandImagesComponent,
-    FeetImagesComponent
+    FeetImagesComponent,
+    LimiterImagesComponent
   ],
   imports: [
     BrowserModule,

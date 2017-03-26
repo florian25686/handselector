@@ -18,9 +18,9 @@ import { EXISTINGIMAGES_FEET } from './images/mock-feetimages';
 			(keyup.a)="onClickMe('left'); box.value = null"
 			(keyup.d)="onClickMe('right'); box.value = null"
 			value="Tastatureingabe">
-
       <br/>
 		    Das Feld "Tastatureingabe" anklicken um mittels Tasten zu Arbeiten. A = links, D = rechts<br/>
+Anzahl zur Anzeige: {{ numberImagesToView }}
     </div>
     <div id="result" *ngIf="resultsLeft != 0">
       <h2>Ergebnis</h2>
@@ -31,7 +31,8 @@ import { EXISTINGIMAGES_FEET } from './images/mock-feetimages';
       <button onClick="location.reload()">Neu Starten</button>
 
     </div>
-  `
+  `,
+  inputs: ['numberSelectedImages']
 })
 
 export class FeetImagesComponent {
@@ -41,8 +42,7 @@ export class FeetImagesComponent {
   resultsRight = 0;
   existingImages = EXISTINGIMAGES_FEET;
   displayImages = [];
-  numberClicked = 0;
-  numberImagesToView = 25;
+  numberClicked = 1;
   numberCorrectImagesLeft = 0;
   numberCorrectImagesRight = 0;
   numberImagesLeft = 0;
@@ -50,6 +50,7 @@ export class FeetImagesComponent {
   startTimeTotal = 0;
   endTimeTotal = 0;
   timeUsed = 0;
+  @Input('numberSelectedImages') numberImagesToView: number;
 
   constructor() {
     this.existingImages.sort(function(a,b){
@@ -58,11 +59,11 @@ export class FeetImagesComponent {
     this.displayImages.push(this.existingImages.pop());
   }
   onClickMe( side: string ) {
-    if(this.numberClicked == 0) {
+    if(this.numberClicked == 1) {
       this.startTimeTotal = new Date().getTime();
     }
       // Still Images left to show ?
-      if(this.existingImages.length >= 1 && this.numberClicked <= this.numberImagesToView) {
+      if(this.existingImages.length >= 1 && this.numberClicked < this.numberImagesToView) {
 
         if( this.displayImages[0].side == 'left' ) {
           this.numberImagesLeft += 1;

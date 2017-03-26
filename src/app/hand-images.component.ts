@@ -7,7 +7,7 @@ import { EXISTINGIMAGES } from './images/mock-handimages';
   selector: 'hand-images',
   template: `
     <div id="images" *ngIf="resultsLeft == 0">
-        <ul  style="list-style:none;">
+        <ul style="list-style:none;">
       		<li *ngFor="let bild of displayImages">
       		  <img src="{{bild?.path}}" width="500px">
       		</li>
@@ -29,7 +29,6 @@ import { EXISTINGIMAGES } from './images/mock-handimages';
        Gesamtzeit: {{ timeUsed }} Sekunden<br/>
        <br/>
       <button onClick="location.reload()">Neu Starten</button>
-
     </div>
   `
 })
@@ -41,8 +40,7 @@ export class HandImagesComponent {
   resultsRight = 0;
   existingImages = EXISTINGIMAGES;
   displayImages = [];
-  numberClicked = 0;
-  numberImagesToView = 25;
+  numberClicked = 1;
   numberCorrectImagesLeft = 0;
   numberCorrectImagesRight = 0;
   numberImagesLeft = 0;
@@ -50,6 +48,7 @@ export class HandImagesComponent {
   startTimeTotal = 0;
   endTimeTotal = 0;
   timeUsed = 0;
+  @Input('numberSelectedImages') numberImagesToView: number;
 
   constructor() {
     this.existingImages.sort(function(a,b){
@@ -58,11 +57,11 @@ export class HandImagesComponent {
     this.displayImages.push(this.existingImages.pop());
   }
   onClickMe( side: string ) {
-    if(this.numberClicked == 0) {
+    if(this.numberClicked == 1) {
       this.startTimeTotal = new Date().getTime();
     }
       // Still Images left to show ?
-      if(this.existingImages.length >= 1 && this.numberClicked <= this.numberImagesToView) {
+      if(this.existingImages.length >= 1 && this.numberClicked < this.numberImagesToView) {
 
         if( this.displayImages[0].side == 'left' ) {
           this.numberImagesLeft += 1;
