@@ -20,7 +20,6 @@ import { EXISTINGIMAGES_FEET } from './images/mock-feetimages';
 			value="Tastatureingabe">
       <br/>
 		    Das Feld "Tastatureingabe" anklicken um mittels Tasten zu Arbeiten. A = links, D = rechts<br/>
-Anzahl zur Anzeige: {{ numberImagesToView }}
     </div>
     <div id="result" *ngIf="resultsLeft != 0">
       <h2>Ergebnis</h2>

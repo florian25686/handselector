@@ -17,7 +17,6 @@ import { Component, Input } from '@angular/core';
         <option value="40" *ngIf="imageTypesSelected == 'hand'">40</option>
       </select>
       <br/>
-      Auwahl: {{selectedOption}}
     </div>
     <div *ngIf="numberImagesSelected != 0">
       <div id="images" *ngIf="imageTypesSelected == 'hand'">
