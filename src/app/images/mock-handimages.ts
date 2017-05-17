@@ -51,5 +51,10 @@ export var EXISTINGIMAGES: HandImage[] = [
   { id: 46, name: 'Bild47', side: 'left', path: IMAGEPATH+'img47.png'},
   { id: 47, name: 'Bild48', side: 'right', path: IMAGEPATH+'img48.png'},
   { id: 48, name: 'Bild49', side: 'left', path: IMAGEPATH+'img49.png'},
-  { id: 49, name: 'Bild50', side: 'left', path: IMAGEPATH+'img50.png'}
+  { id: 49, name: 'Bild50', side: 'left', path: IMAGEPATH+'img50.png'},
+  { id: 50, name: 'Bild51', side: 'right', path: IMAGEPATH+'img51.png'},
+  { id: 51, name: 'Bild52', side: 'right', path: IMAGEPATH+'img52.png'},
+  { id: 52, name: 'Bild53', side: 'left', path: IMAGEPATH+'img53.png'},
+  { id: 53, name: 'Bild54', side: 'left', path: IMAGEPATH+'img54.png'},
+  { id: 54, name: 'Bild55', side: 'right', path: IMAGEPATH+'img55.png'}
 ];
