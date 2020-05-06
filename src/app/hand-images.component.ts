@@ -2,14 +2,13 @@ import { Component, Input } from '@angular/core';
 
 import { EXISTINGIMAGES } from './images/mock-handimages';
 
-
 @Component({
   selector: 'hand-images',
   template: `
     <div id="images" *ngIf="resultsLeft == 0">
         <ul style="list-style:none;">
       		<li *ngFor="let bild of displayImages">
-      		  <img src="{{bild?.path}}" width="500px">
+      		  <img src="{{bild?.path}}" class="image">
       		</li>
       	</ul>
         <button (click)="onClickMe('left')" style="margin-left:45px;">Links</button>

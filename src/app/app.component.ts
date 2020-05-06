@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-
 @Component({
   selector: 'app-root',
   template: `
@@ -21,7 +20,7 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'Spiegeltherapie';
+  title = 'Mirrorimages';
   ImageSelector = 1;
   imageTypeSelect = 'default';
   selectedOption = '';
