@@ -1,6 +1,6 @@
 import { HandImage } from './handImages';
 
-const IMAGEPATH = 'src/img/';
+const IMAGEPATH = 'img/small/';
 
 export var EXISTINGIMAGES: HandImage[] = [
   { id: 1, name: 'Bild1', side: 'left', path: IMAGEPATH+'img7.png'},
